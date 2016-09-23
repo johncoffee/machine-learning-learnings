@@ -1,0 +1,12 @@
+{
+  "name": "machine_learn_naturl",
+  "version": "1.0.0",
+  "description": "meh",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "julian",
+  "repository": "git@github.com:johncoffee/machine-learning-learnings.git",
+  "license": "ISC"
+}
