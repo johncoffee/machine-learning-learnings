@@ -32,6 +32,7 @@ const idToAnswer = {
     "1565410547086320_1574817266145648": places.boulders,
     "1565410547086320_1575306242763417": places.dunno,
     "1565410547086320_1574395709521137": places.dunno,
+    "1565410547086320_1597232677237440": places.boulders,
 }
 
 
@@ -81,9 +82,9 @@ function test(feed, subjectIndex) {
 
     let messageToClassify = feed[subjectIndex].message;
     let answer = classifier.classify(messageToClassify);
-    console.log("index "+ subjectIndex);
-    console.log("q :" + messageToClassify);
-    console.log("a :" + answer );
+    console.log("-----")
+    console.log("q: " + messageToClassify);
+    console.log("a: " + answer );
 
     return idToAnswer[feed[subjectIndex].id] == answer;
 }
