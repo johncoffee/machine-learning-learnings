@@ -2,3 +2,4 @@ node_modules
 .idea
 group_feed_result.json
 bower_components
+/our-config.json
