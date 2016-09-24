@@ -44,24 +44,33 @@ class QuestionsAnswers {
             "1565410547086320_1597232677237440": places.boulders,
         }
 
-        this.questions = require('./group_feed_result.json').data;
+        this.questions = require('./group_feed_result.json');
 
     }
 
     runAgainstFeed () {
-        var feed = this.questions;
+        var origFeed = this.questions;
         // let randomIndex = Math.floor(Math.random() * data.data.length)
         // test(data.data, randomIndex)
         // return;
 
-        let score = 0;
-        for (let i = 0; i < feed.length; i++) {
-            let correct = QuestionsAnswers.test(feed, i, this.idToAnswer);
-            if (correct) {
-                score++;
+        let total = origFeed.length
+
+        let reducedFeed = origFeed.filter( (item) => {
+            return !!this.idToAnswer[item.id]
+        })
+
+        let score = reducedFeed.reduce( (previousScore, feedItem, index, currentArray) => {
+            let correct = QuestionsAnswers.test(currentArray, index, this.idToAnswer);
+            if (correct === true) {
+                return previousScore + 1
             }
-        }
-        console.log(score + " / " + feed.length)
+            else {
+                return previousScore
+            }
+        }, 0);
+
+        console.log(`Result: ${ Math.round(score/reducedFeed.length * 100000) / 1000}% correct. skipped ${total - reducedFeed.length}`)
     }
 
 
@@ -75,7 +84,7 @@ class QuestionsAnswers {
                 // console.log("addDocument...")
                 let answer = idToAnswer[item.id]
                 if (!answer) {
-                    console.log("SHOULD BE ANSWER HERE")
+                    console.log("missing answer, skipping")
                 }
                 else {
                     classifier.addDocument(item.message, answer);
