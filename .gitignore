@@ -1,5 +1,8 @@
 node_modules
-.idea
-group_feed_result.json
 bower_components
+
+.idea
+
+# artifacts and config
+/group_feed_result.json
 /our-config.json
