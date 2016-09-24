@@ -1,0 +1,22 @@
+{
+  "name": "machine_learn_naturl",
+  "description": "meh",
+  "main": "index.js",
+  "authors": [
+    "julian"
+  ],
+  "directory": "classification_ui/bower_components",
+  "license": "ISC",
+  "homepage": "https://github.com/johncoffee/machine-learning-learnings",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-material": "^1.1.1"
+  }
+}

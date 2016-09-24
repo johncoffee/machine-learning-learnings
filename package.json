@@ -7,6 +7,7 @@
   "repository": "git@github.com:johncoffee/machine-learning-learnings.git",
   "license": "ISC",
   "dependencies": {
+    "convnetjs": "^0.3.0",
     "natural": "^0.4.0"
   }
 }
