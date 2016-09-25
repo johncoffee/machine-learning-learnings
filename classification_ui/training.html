@@ -6,10 +6,15 @@
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
 
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <!--<link rel="stylesheet" href="//bootswatch.com/flatly/bootstrap.min.css">-->
+
     <!--<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/css/bootstrap.min.css" integrity="sha384-2hfp1SzUoho7/TsGGGDaFdsuuDL0LX2hnUp6VkX3CUQ2K4K+xjboZdsXyp4oUHZj" crossorigin="anonymous">-->
     <style>
         tr:hover td {
             background: #d8ffdc;
+        }
+        label {
+            cursor: pointer;
         }
     </style>
     <title>stuff</title>
@@ -103,17 +108,16 @@
 </head>
 <body ng-app="app" ng-cloak>
 
+<div class="container-fluid">
+
 <div class="row"  ng-controller="QuestionsController as questionsCtrl">
     <div class="col-md-6">
 
-
         <h2>Questions</h2>
-
         <p>Question: Is the comment-author determined to go, according to the proposal in the post?
-
         <p>Examples: "yep!" "I'm on my way there now.." "I'll be there after 18 or something"
-
         <hr>
+
         <table>
             <thead>
             <tr>
@@ -156,6 +160,7 @@
         <textarea cols="60" rows="14" ng-bind="questionsCtrl.submissions | json:2"></textarea>
 
     </div>
+</div>
 </div>
 
 </body>
