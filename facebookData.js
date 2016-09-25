@@ -26,37 +26,69 @@ function auth() {
     return newPromise
 }
 
-loadFeed()
+// writeFeed()
+function writeFeed() {
+    loadFeed()
     // .then(function (access_token) {
     //     // FB.setAccessToken(access_token);
     //     return loadFeed();
     // }, showError)
-    .then(function (feed) {
-        console.log(feed)
-        // console.log('done')
+        .then(function (feed) {
+            // console.log('done')
 
-        var p = new Promise(function (resolve, reject) {
-            fs.writeFile("./group_feed_result.json", JSON.stringify(feed, null, '\t'), function (err) {
-                if (err) {
-                    reject()
+            var p = new Promise(function (resolve, reject) {
+                fs.writeFile("./group_feed_result.json", JSON.stringify(feed, null, '\t'), function (err) {
+                    if (err) {
+                        reject()
+                    }
+                    else {
+                        resolve()
+                    }
+                });
+            })
+
+            return p
+
+        }, showError)
+}
+
+
+// loadFeedComments()
+
+function loadFeedComments() {
+    return new Promise(function (resolve, reject) {
+
+        FB.api(
+            '/1565410547086320/feed',
+            'GET',
+            {"fields": "id,message,comments.limit(99){from,message,id}"},
+            function (response) {
+                if (response && response.error) {
+                    reject(response)
+                    return
                 }
-                else {
-                    resolve()
-                }
-            });
-        })
 
-        return p
+                let feed = response.data
+                fs.writeFile("./group_feed_result.json", JSON.stringify(feed, null, '\t'), function (err) {
+                    if (err) {
+                        reject(err)
+                    }
+                    else {
+                        resolve()
+                    }
+                });
+            }
+        )
+    })
 
-    }, showError)
-
+}
 
 function loadFeed() {
     return new Promise(function (resolve, reject) {
 
         FB.api('/' + fbConfig.groupId + '/feed?fields=id,message,link,created_time&limit=99', function (res) {
-            if(res && res.error) {
-                if(res.error.code === 'ETIMEDOUT') {
+            if (res && res.error) {
+                if (res.error.code === 'ETIMEDOUT') {
                     console.log('request timeout');
                 }
                 else {
