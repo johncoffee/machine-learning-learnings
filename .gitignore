@@ -4,5 +4,5 @@ bower_components
 .idea
 
 # artifacts and config
-/group_feed_result.json
+/*_result.json
 /our-config.json
